@@ -1,0 +1,72 @@
+<form #f="ngForm" [formGroup]="this.form" class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="wrapper row">
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Titulo:</mat-label>
+                        <input matInput #titulo placeholder="titulo" formControlName="titulo"
+                            [readonly]="this.data.type == 'view'">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Fecha:</mat-label>
+                        <input type="date" matInput #fecha placeholder="fecha" formControlName="fecha"
+                            [readonly]="this.data.type == 'view'">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Director:</mat-label>
+                        <input matInput #director placeholder="director" formControlName="director"
+                            [readonly]="this.data.type == 'view'">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Argumento:</mat-label>
+                        <input matInput #argumento placeholder="argumento" formControlName="argumento"
+                            [readonly]="this.data.type == 'view'">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Duración:</mat-label>
+                        <input type="number" matInput #duracion placeholder="duracion" formControlName="duracion"
+                            [readonly]="this.data.type == 'view'">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6" style="margin-bottom: 14px;">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Genero: </mat-label>
+                        <mat-select id="genero" #genero formControlName="genero">
+                            <mat-option [value]="gender.id" *ngFor="let gender of genders; let i = index"
+                                [disabled]="this.data.type == 'view'">
+                                {{gender.genero}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6" style="margin-bottom: 14px;">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Formato: </mat-label>
+                        <mat-select id="formato" #formato formControlName="formato" [disabled]="this.data.type == 'view'">
+                            <mat-option [value]="format.id" *ngFor="let format of formats; let i = index" [disabled]="this.data.type == 'view'">
+                                {{format.formato}} - {{format.formatoPelicula}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div *ngIf="data.type == 'create'">
+                    <button mat-raised-button style="color:white; background: #eb1b33; width: 100%; height: 51px;"
+                        [disabled]="this.form.invalid" id="buscar-button" (click)="RegisterRoute();">Registrar</button>
+                </div>
+                <div *ngIf="data.type == 'edit'">
+                    <button mat-raised-button style="color:white; background: #ebb01b; width: 100%; height: 51px;"
+                        [disabled]="this.form.invalid" id="buscar-button" (click)="EditRoute();">Modificar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
